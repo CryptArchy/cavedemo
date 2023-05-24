@@ -1,0 +1,271 @@
+[gd_scene load_steps=16 format=3 uid="uid://tikakpo404rs"]
+
+[ext_resource type="Shader" path="res://shaders/FlatShader.gdshader" id="1_4g70v"]
+[ext_resource type="Script" path="res://player.gd" id="1_gtin2"]
+[ext_resource type="PackedScene" uid="uid://h3sq8uhgnlx6" path="res://skellieboi.tscn" id="3_ffuxl"]
+[ext_resource type="Material" uid="uid://bddobuympxfmm" path="res://shaders/low-poly-water.tres" id="6_8idj0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5n0ty"]
+
+[sub_resource type="Sky" id="Sky_5rx6c"]
+sky_material = SubResource("ProceduralSkyMaterial_5n0ty")
+
+[sub_resource type="Environment" id="Environment_oowpg"]
+background_mode = 2
+sky = SubResource("Sky_5rx6c")
+ambient_light_source = 1
+reflected_light_source = 1
+fog_enabled = true
+fog_light_color = Color(0.168627, 0.207843, 0.376471, 1)
+fog_light_energy = 0.05
+fog_density = 0.001
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.005
+
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_pnuag"]
+seed = 1
+period = 32.0001
+
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_67l8t"]
+seed = 2
+
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_w8l28"]
+
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_3ueb8"]
+seed = -1
+
+[sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_ey82u"]
+graph_data = {
+"connections": [[52, 0, 53, 0], [28, 0, 61, 1], [26, 0, 35, 0], [26, 0, 35, 1], [2, 0, 80, 1], [35, 0, 52, 0], [38, 0, 61, 0], [53, 0, 28, 1], [53, 0, 98, 0], [55, 0, 80, 0], [56, 0, 99, 0], [56, 0, 28, 0], [57, 0, 58, 0], [58, 0, 59, 1], [59, 0, 38, 0], [60, 0, 59, 0], [61, 0, 72, 0], [62, 0, 63, 0], [63, 0, 64, 0], [72, 0, 25, 0], [78, 0, 81, 0], [80, 0, 78, 0], [80, 0, 78, 1], [81, 0, 56, 0], [82, 0, 55, 0]],
+"nodes": {
+"100": {
+"gui_position": Vector2(-480, -800),
+"gui_size": Vector2(963, 321),
+"name": &"Surface Terrain",
+"text": "",
+"type": "Comment"
+},
+"2": {
+"gui_position": Vector2(-380, -280),
+"type": "InputY"
+},
+"25": {
+"auto_connect": true,
+"gui_position": Vector2(1260, -80),
+"type": "OutputSDF"
+},
+"26": {
+"auto_connect": true,
+"gui_position": Vector2(-360, -20),
+"noise": SubResource("ZN_FastNoiseLite_pnuag"),
+"type": "FastNoise2D",
+"x": 0.0,
+"y": 0.0
+},
+"28": {
+"gui_position": Vector2(800, -320),
+"type": "Add"
+},
+"35": {
+"gui_position": Vector2(-180, -20),
+"type": "Multiply"
+},
+"38": {
+"b": -11.0,
+"gui_position": Vector2(300, -620),
+"name": &"Base Height",
+"type": "Add"
+},
+"52": {
+"b": 10.0,
+"gui_position": Vector2(0, -20),
+"type": "Multiply"
+},
+"53": {
+"b": 0.5,
+"gui_position": Vector2(300, -20),
+"type": "Subtract"
+},
+"55": {
+"b": 10.0,
+"gui_position": Vector2(-500, -340),
+"type": "Multiply"
+},
+"56": {
+"b": -1.0,
+"gui_position": Vector2(300, -300),
+"type": "Add"
+},
+"57": {
+"auto_connect": true,
+"gui_position": Vector2(-480, -620),
+"noise": SubResource("ZN_FastNoiseLite_67l8t"),
+"type": "FastNoise2D",
+"x": 0.0,
+"y": 0.0
+},
+"58": {
+"b": 15.0,
+"gui_position": Vector2(-180, -620),
+"type": "Multiply"
+},
+"59": {
+"gui_position": Vector2(100, -620),
+"type": "Add"
+},
+"60": {
+"gui_position": Vector2(-140, -700),
+"type": "InputY"
+},
+"61": {
+"gui_position": Vector2(940, -320),
+"smoothness": 0.0,
+"type": "SdfSmoothSubtract"
+},
+"62": {
+"auto_connect": true,
+"gui_position": Vector2(-400, 240),
+"noise": SubResource("ZN_FastNoiseLite_w8l28"),
+"type": "FastNoise2D",
+"x": 0.0,
+"y": 0.0
+},
+"63": {
+"b": 1.0,
+"gui_position": Vector2(-220, 240),
+"type": "Multiply"
+},
+"64": {
+"b": -10.0,
+"gui_position": Vector2(0, 240),
+"type": "Max"
+},
+"72": {
+"gui_position": Vector2(1140, -320),
+"type": "Relay"
+},
+"78": {
+"gui_position": Vector2(-140, -300),
+"type": "Multiply"
+},
+"80": {
+"gui_position": Vector2(-280, -300),
+"type": "Add"
+},
+"81": {
+"b": 0.05,
+"gui_position": Vector2(40, -300),
+"type": "Multiply"
+},
+"82": {
+"auto_connect": true,
+"gui_position": Vector2(-680, -340),
+"noise": SubResource("ZN_FastNoiseLite_3ueb8"),
+"type": "FastNoise2D",
+"x": 0.0,
+"y": 0.0
+},
+"95": {
+"gui_position": Vector2(-380, -140),
+"gui_size": Vector2(980, 261),
+"name": &"Worms",
+"text": "",
+"type": "Comment"
+},
+"96": {
+"gui_position": Vector2(-700, -460),
+"gui_size": Vector2(1307, 275),
+"name": &"Y-Perturb",
+"text": "",
+"type": "Comment"
+},
+"98": {
+"fraction_period": 10.0,
+"gui_position": Vector2(440, -80),
+"max_value": 1.0,
+"min_value": -1.0,
+"mode": 1,
+"type": "SdfPreview"
+},
+"99": {
+"fraction_period": 10.0,
+"gui_position": Vector2(440, -420),
+"max_value": 1.0,
+"min_value": -1.0,
+"mode": 1,
+"type": "SdfPreview"
+}
+},
+"version": 2
+}
+subdivision_size = 8
+use_xz_caching = false
+
+[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_mib6p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g0udh"]
+render_priority = 0
+shader = ExtResource("1_4g70v")
+shader_parameter/albedo = Color(0.886275, 0.545098, 0.2, 1)
+shader_parameter/point_size = null
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = null
+shader_parameter/metallic = null
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
+shader_parameter/u_transition_mask = null
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4tblw"]
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_oowpg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.83925, -0.249684, 0.483029, 0, 0.888337, 0.459192, -0.543746, -0.385377, 0.745537, 500, 500, 500)
+light_energy = 1.5
+shadow_enabled = true
+
+[node name="VoxelLodTerrain" type="VoxelLodTerrain" parent="."]
+generator = SubResource("VoxelGeneratorGraph_ey82u")
+mesher = SubResource("VoxelMesherTransvoxel_mib6p")
+material = SubResource("ShaderMaterial_g0udh")
+
+[node name="fgc_skeleton" parent="VoxelLodTerrain" instance=ExtResource("3_ffuxl")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -14.5875, -6.90732, -18.9552)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="VoxelLodTerrain/fgc_skeleton"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0.0407639, 36.2096, 0.63208)
+light_color = Color(1, 0.486275, 0, 1)
+light_energy = 3.0
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 100.0
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="VoxelLodTerrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0871, -1.07288e-06, -19.7992)
+inner_radius = 1.0
+outer_radius = 3.5
+sides = 32
+ring_sides = 16
+material = ExtResource("6_8idj0")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+script = ExtResource("1_gtin2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_4tblw")
+
+[node name="CameraEyes" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+
+[node name="VoxelViewer" type="VoxelViewer" parent="Player/CameraEyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.800003, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Player/CameraEyes"]
+spot_range = 50.0
+spot_angle = 30.0

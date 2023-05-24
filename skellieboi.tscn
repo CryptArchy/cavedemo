@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://h3sq8uhgnlx6"]
+
+[ext_resource type="PackedScene" uid="uid://dm3tf01bcm45y" path="res://fgc_skeleton.blend" id="1_gj3ra"]
+
+[node name="fgc_skeleton" instance=ExtResource("1_gj3ra")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
